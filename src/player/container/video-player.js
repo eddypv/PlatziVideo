@@ -7,7 +7,8 @@ import Timer from '../components/timer'
 import Controls from '../components/video-player-controls';
 import ProgressBar from '../components/progress-bar';
 import Spinner from '../components/spinner';
-import Volume from '../components/volumen'
+import Volume from '../components/volumen';
+import FullScreen  from '../components/full-screen'
 class VideoPlayer extends Component{
     state = {
         pause:false,
@@ -55,9 +56,22 @@ class VideoPlayer extends Component{
     handleVolumeChange =(event)=>{
         this.video.volume = event.target.value
     }
+    handleFullScreenClick =(event)=>{
+        console.log("entr")
+        if(!document.fullscreenEnabled){
+            this.player.mozRequestFullScreen()
+        }else{
+            document.mozCancelFullScreen()
+        }
+    }
+    setRef =(element) =>{
+        this.player = element
+    }
     render(){
         return (
-            <VideoPlayerLayout>
+            <VideoPlayerLayout
+                setRef={this.setRef}
+            >
                 <Title title="Ejemplo de it" />
                 <Controls>
                     <PlayPause 
@@ -76,6 +90,7 @@ class VideoPlayer extends Component{
                     <Volume 
                         handleVolumeChange={this.handleVolumeChange}
                     />
+                    <FullScreen handleFullScreenClick={this.handleFullScreenClick} />
                 </Controls>
                 <Spinner active={this.state.loading}/>
                 <Video 
