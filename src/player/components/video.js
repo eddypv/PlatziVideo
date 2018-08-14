@@ -25,6 +25,7 @@ class Video extends Component{
                     autoPlay={this.props.autoPlay}
                     src={this.props.src} 
                     ref={this.setRef}
+                    onLoadedMetadata={this.props.onLoadedMetaData}
                 />  
             </div>
         )
