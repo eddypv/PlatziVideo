@@ -10,7 +10,7 @@ class Playlist extends Component{
             <div className="Playlist">
                 {
                     playlist.map((item)=>{
-                        return <Media {...item}  key={item.id} handleClick={this.props.handleOpenModal}/>
+                        return <Media {...item}  key={item.id} openModal={this.props.handleOpenModal}/>
                     })
                 }
                 
