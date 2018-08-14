@@ -5,12 +5,14 @@ import Title from '../components/title';
 import PlayPause from '../components/play-pause';
 import Timer from '../components/timer'
 import Controls from '../components/video-player-controls';
-import ProgressBar from '../components/progress-bar'
+import ProgressBar from '../components/progress-bar';
+import Spinner from '../components/spinner';
 class VideoPlayer extends Component{
     state = {
         pause:false,
         duration:0,
-        currentTime:0
+        currentTime:0,
+        loading:false
     }
     togglePlay =(event) =>{
         this.setState({
@@ -38,6 +40,17 @@ class VideoPlayer extends Component{
         
         
     }
+    handleSeeking = (event)=>{
+        this.setState({
+            loading:true
+        })
+
+    }
+    handleSeeked =(event)=>{
+        this.setState({
+            loading:false
+        })
+    }
     render(){
         return (
             <VideoPlayerLayout>
@@ -57,11 +70,14 @@ class VideoPlayer extends Component{
                         handleProgressChange={this.handleProgressChange}
                     />
                 </Controls>
+                <Spinner active={this.state.loading}/>
                 <Video 
                     autoPlay={this.props.autoPlay}
                     pause={this.state.pause}
                     onLoadedMetaData={this.handleLoadedMetaData}
                     handleTimeUpdate={this.handleTimeUpdate}
+                    handleSeeking={this.handleSeeking}
+                    handleSeeked={this.handleSeeked}
                     src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
                     
                 />
