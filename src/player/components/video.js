@@ -26,6 +26,7 @@ class Video extends Component{
                     src={this.props.src} 
                     ref={this.setRef}
                     onLoadedMetadata={this.props.onLoadedMetaData}
+                    onTimeUpdate={this.props.handleTimeUpdate}
                 />  
             </div>
         )

@@ -8,7 +8,8 @@ import Controls from '../components/video-player-controls';
 class VideoPlayer extends Component{
     state = {
         pause:false,
-        duration:0
+        duration:0,
+        currentTime:0
     }
     togglePlay =(event) =>{
         this.setState({
@@ -26,6 +27,11 @@ class VideoPlayer extends Component{
             duration:this.video.duration
         }) 
     }
+    handleTimeUpdate = (event)=>{
+        this.setState({
+            currentTime:this.video.currentTime
+        })
+    }
     render(){
         return (
             <VideoPlayerLayout>
@@ -35,12 +41,16 @@ class VideoPlayer extends Component{
                         handleClick={this.togglePlay}
                         pause={this.state.pause}    
                     />
-                    <Timer duration={this.state.duration}/>
+                    <Timer 
+                        duration={this.state.duration}
+                        currentTime={this.state.currentTime}
+                    />
                 </Controls>
                 <Video 
                     autoPlay={this.props.autoPlay}
                     pause={this.state.pause}
                     onLoadedMetaData={this.handleLoadedMetaData}
+                    handleTimeUpdate={this.handleTimeUpdate}
                     src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
                     
                 />
