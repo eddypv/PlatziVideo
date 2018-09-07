@@ -1,15 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 //import Playlist from "./src/playlist/components/playlist"
-import data from '../api.json'
+//import data from '../api.json'
 import Home from '../pages/container/home'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from '../reducer/data'
+import reducer from '../reducer/data';
+import data from '../schemas/index.js';
 
 const initialState={
     data:{
-        ...data,
+        entities:data.entities,
+        categories: data.result.categories
     },
     search:[]
 }
