@@ -5,23 +5,14 @@ import ReactDOM from 'react-dom'
 import Home from '../pages/container/home'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from '../reducer/data';
-import data from '../schemas/index.js';
+import reducer from '../reducer/index';
 
-const initialState={
-    data:{
-        entities:data.entities,
-        categories: data.result.categories
-    },
-    search:[]
-}
 
 const store = createStore(
     reducer,
-    initialState,
+    {},
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-console.log(store.getState());
 const app = document.getElementById("home-container")
 
 ReactDOM.render(
