@@ -6,11 +6,12 @@ import Home from '../pages/container/home'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from '../reducer/index';
+import {Map as map} from 'immutable';
 
 
 const store = createStore(
     reducer,
-    {},
+    map(),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 const app = document.getElementById("home-container")

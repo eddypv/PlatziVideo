@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 class MediaContainer extends Component{
     render(){
-        return <Media {...this.props.data}/>
+        return <Media {...this.props.data.toJS()}/>
     }
 }
 function mapStateToProps(state, props){
-    const data= state.data.entities.media[props.id]
+    const data= state.get('data').get('entities').get('media').get(props.id)
     return {
         data:data
     };
