@@ -9,6 +9,7 @@ import reducer from '../reducer/index';
 import {Map as map} from 'immutable';
 import logger from 'redux-logger'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
 /*
 function looger({getState, dispatch}){
     return (next)=>{
@@ -36,7 +37,7 @@ const store = createStore(
     composeWithDevTools(
         applyMiddleware(
             logger,
-            loogerES6
+            thunk
         )
     )
 )

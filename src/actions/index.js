@@ -1,4 +1,5 @@
-import {OPEN_MODAL,CLOSE_MODAL, SEARCH_ENTITIES} from '../actions-types/index'
+import {OPEN_MODAL,CLOSE_MODAL, SEARCH_ENTITIES, SEARCH_ASYNC_ENTITIES} from '../actions-types/index'
+import { setTimeout } from 'timers';
 export function openModal(mediaId){
     return {
         type:OPEN_MODAL,
@@ -22,5 +23,18 @@ export function searchEntities(query){
             query:query
         }
     }
+
+}
+
+export function searchAsyncEntities(query){
+    return (dispatch)=>{
+        // llamar al api rest
+        // fetch 
+        setTimeout(()=>{
+            dispatch(searchEntities(query))    
+
+        },5000)
+    }
+    
 
 }
