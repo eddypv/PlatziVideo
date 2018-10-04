@@ -7,7 +7,9 @@ import {createStore, applyMiddleware } from 'redux';
 import {Provider} from 'react-redux';
 import reducer from '../reducer/index';
 import {Map as map} from 'immutable';
-
+import logger from 'redux-logger'
+import {composeWithDevTools} from 'redux-devtools-extension'
+/*
 function looger({getState, dispatch}){
     return (next)=>{
         return (action)=>{
@@ -19,6 +21,7 @@ function looger({getState, dispatch}){
         }
     }
 }
+*/
 const loogerES6 = ({getState, dispatch})=> next => action=>{
     console.log("Mi viejo estado", getState().toJS())
     console.log("vamos enviar nuestra accion", action)
@@ -29,8 +32,13 @@ const loogerES6 = ({getState, dispatch})=> next => action=>{
 const store = createStore(
     reducer,
     map(),
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    applyMiddleware(loogerES6)
+    // Varios middleware
+    composeWithDevTools(
+        applyMiddleware(
+            logger,
+            loogerES6
+        )
+    )
 )
 const app = document.getElementById("home-container")
 
